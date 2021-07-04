@@ -27,17 +27,17 @@
         exit();
     }
 
-    $query = 'select * from memos order by id desc';
-    $records = $db->query($query);
+    $query = 'select * from memos where id=1';
+    $memos = $db->query($query);
+
+    $memo =  $memos->fetch();
     ?>
 
     <article>
-    <?php while($record = $records->fetch()): ?>
-            <p><a href="#"><?php print(mb_substr($record['memo'], 0, 50)); ?></a></p>
-            <time><?php print($record['created_at']); ?></time>
-            <hr>
-    <?php endwhile; ?>
-    </article>
+        <pre><?php print ($memo['memo']); ?></pre>
+
+        <a href='index.php'>戻る</a>
+    <article>
 
 </pre>
 </main>
