@@ -22,15 +22,17 @@
 
     require('dbconnect.php');
 
-    //データ登録
-    $insert = 'insert into memos set memo=?, created_at=NOW()'; //登録用insert文
-    $statement = $db->prepare($insert);
-    $statement->bindParam(1, $_POST['memo']);
-    $statement->execute(); //SQL文実行
+    //データ編集
+    $update = 'update memos set memo=? where id=?'; //登録用update文
+    $statement = $db->prepare($update);
+    $statement->execute(array($_POST['memo'], $_POST['id'])); //SQL文実行
 
     ?>
-
+    メモの内容を変更しました
 </pre>
+
+    <p><a href="index.php">戻る</a></p>
+
 </main>
 </body>    
 </html>
