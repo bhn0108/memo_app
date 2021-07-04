@@ -20,19 +20,13 @@
 <pre>
     <?php
 
-    try {
-        //DB接続
-        $db = new PDO('mysql:dbname=mydb;host:localhost:3306;charset=utf8', 'root', 'root');
+    require('dbconnect.php');
 
-        //データ登録
+    //データ登録
         $insert = 'insert into memos set memo=?, created_at=NOW()'; //登録用insert文
         $statement = $db->prepare($insert);
         $statement->bindParam(1, $_POST['memo']);
         $statement->execute(); //SQL文実行
-
-    } catch(PDOException $e) {
-        echo 'DB接続エラー：' . $e->getMessage();
-    }
 
     ?>
 

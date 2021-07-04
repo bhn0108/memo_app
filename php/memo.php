@@ -19,13 +19,8 @@
 <h2>LIST</h2>
 <pre>
     <?php
-    //DB接続
-    try {
-        $db = new PDO('mysql:dbname=mydb;host:localhost:3306;charset=utf8', 'root', 'root');
-    } catch(PDOException $e) {
-        echo 'DB接続エラー：'. $e->getMessage();
-        exit();
-    }
+
+    require('dbconnect.php');
 
     $id = $_REQUEST['id'];
     if (!is_numeric($id) || $id <= 0) {
