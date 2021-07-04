@@ -16,24 +16,22 @@
 </header>
 
 <main>
-<h2>PHP</h2>
+<h2>Practice</h2>
 <pre>
-<?php
-    //DB接続
+    <?php
+
     try {
         $db = new PDO('mysql:dbname=mydb;host:localhost:3306;charset=utf8', 'root', 'root');
+
+        $insert = 'insert into memos set memo="' . $_POST['memo'] . '", created_at=NOW()';
+        $db->exec($insert);
+
     } catch(PDOException $e) {
-        echo 'DB接続エラー：'. $e->getMessage();
-        exit();
+        echo 'DB接続エラー：' . $e->getMessage();
     }
 
-    $query = 'select * from my_items';
-    $records = $db->query($query);
-    while($record = $records->fetch()) {
-        print($record['item_name']."\n");
-    }
+    ?>
 
-?>
 </pre>
 </main>
 </body>    
