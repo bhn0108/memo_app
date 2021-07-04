@@ -27,9 +27,15 @@
         exit();
     }
 
-    $query = 'select * from memos where id=1';
-    $memos = $db->query($query);
+    $id = $_REQUEST['id'];
+    if (!is_numeric($id) || $id <= 0) {
+        print('1以上の数字で指定してください');
+        exit();
+    }
 
+    $query = 'select * from memos where id=?';
+    $memos = $db->prepare($query);
+    $memos->execute(array($id));
     $memo =  $memos->fetch();
     ?>
 

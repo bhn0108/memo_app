@@ -27,13 +27,15 @@
         exit();
     }
 
+    //一覧取得
     $query = 'select * from memos order by id desc';
     $records = $db->query($query);
     ?>
 
+    <!-- メモの内容を一行づつ取り出し作成日時とともに一覧表示 -->
     <article>
     <?php while($record = $records->fetch()): ?>
-            <p><a href="#"><?php print(mb_substr($record['memo'], 0, 50)); ?></a></p>
+            <p><a href="memo.php?id=<?php print($record['id']); ?>"><?php print(mb_substr($record['memo'], 0, 50)); ?></a></p>
             <time><?php print($record['created_at']); ?></time>
             <hr>
     <?php endwhile; ?>
